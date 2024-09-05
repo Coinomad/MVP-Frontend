@@ -31,7 +31,7 @@ const Asidebar = ({ clicked, setClicked, setHeader }) => {
           onClick={() => setClicked((prev) => !prev)}
           className="text-[1.25rem]"
         />
-        <Link to={"/dashboard"}>
+        <Link to={"/"}>
           {clicked ? (
             <img
               className="w-[25px] h-[25px]"

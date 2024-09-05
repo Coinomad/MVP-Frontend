@@ -20,6 +20,7 @@ const Header = () => {
     location.pathname !== "/home" &&
     location.pathname !== "/sign-in" &&
     location.pathname !== "/sign-up/join" &&
+    location.pathname !== "/sign-up/employee-signup" &&
     location.pathname !== "/sign-up/step-1" &&
     location.pathname !== "/sign-up/verify-email" &&
     location.pathname !== "/sign-up/create-password" &&

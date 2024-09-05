@@ -15,7 +15,7 @@ const SignIn = () => {
   const { setAuth } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  // const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const [isClicked, setIsClicked] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -46,17 +46,8 @@ const SignIn = () => {
         secureLocalStorage.setItem("expiry", response.data.data);
         // setAuth({ user: firstName, accessToken, expiry });
         setLoading(false);
-
-        const from = location.state?.from?.pathname;
-        if (from) {
-          navigate(from, { replace: true });
-        } else if (role === "employer") {
-          navigate("/employer-dashboard", { replace: true });
-        } else if (role === "employee") {
-          navigate("/employee-dashboard", { replace: true });
-        } else {
-          navigate("/dashboard", { replace: true });
-        }
+        
+        navigate(from, { replace: true });
 
         toast.success(response.data.message);
       } catch (error) {

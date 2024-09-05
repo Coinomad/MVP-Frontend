@@ -67,7 +67,7 @@ const EmployeeTable = ({
   return (
     <>
       {data.length > 0 ? (
-        <div className="whitespace-nowrap overflow-auto w-full">
+        <div className="table-container whitespace-nowrap overflow-auto w-full">
           <table className="w-full border-collapse">
             {/* Table header */}
             <thead>

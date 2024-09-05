@@ -35,6 +35,22 @@ export const signIn = Yup.object({
 //     .required("required"),
 // });
 
+export const EmployeeSignUpSchema = Yup.object({
+  password: Yup.string()
+    .max(8, "Password must not exceed 8 characters!")
+    .matches(passwordRegExp, "Invalid Password Input")
+    .required("required"),
+  password: Yup.string()
+    .oneOf([Yup.ref("password")], "Password must match!")
+    .required("required"),
+  firstName: Yup.string()
+    .max(50, "Must be 50 characters or less")
+    .required("Required"),
+  lastName: Yup.string()
+    .max(50, "Must be 50 characters or less")
+    .required("Required"),
+});
+
 export const OrgEmail = Yup.object({
   email: Yup.string()
     .email("Enter Your E-mail Address")
@@ -107,13 +123,13 @@ export const truncateWalletAddress = (address) => {
 export const formatNumber = (numberString, numfixed = 2) => {
   // Check if the input is a number
   if (typeof numberString !== "number") {
-    return ;
+    return;
   }
   // Parse the number to float
   const number = parseFloat(numberString);
 
   // Format with commas and two decimal places
-  return number.toFixed(numfixed).replace(/\d(?=(\d{3})+\.)/g, "$&,") ;
+  return number.toFixed(numfixed).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 };
 
 export const capitalizeFirstLetterOfEachWord = (inputString) => {

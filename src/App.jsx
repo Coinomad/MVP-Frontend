@@ -1,9 +1,9 @@
 //App
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //Authentication Page(s)
 import SignIn from "./components/Pages/Authentication Pages/SignIn";
+import EmployeeSignUp from "./components/Pages/Authentication Pages/SignUp/EmployeeSignUp";
 import VerifyEmail from "./components/Pages/Authentication Pages/SignUp/VerifyEmail";
 import StepOne from "./components/Pages/Authentication Pages/SignUp/StepOne";
 import CreatePassword from "./components/Pages/Authentication Pages/SignUp/CreatePassword";
@@ -17,9 +17,11 @@ import SuccessVerificationCheck from "./components/Pages/Authentication Pages/Su
 //Page(s)
 import Landing from "./components/Pages/Landing";
 import Layout from "./components/Pages/Layout";
+import NotFound from "./components/Pages/NotFound";
 
 //Page Component
 import { FormProvider } from "./components/Pages/Authentication Pages/SignUp/FormContext";
+import WaitListDisplay from "./components/Pages/WaitListDisplay";
 // import Header from "./components/Page Components/Header";
 // import Footer from "./components/Page Components/Footer";
 // import HideHeaderFooter from "./components/Page Components/HideHeaderFooter";
@@ -27,31 +29,24 @@ import { FormProvider } from "./components/Pages/Authentication Pages/SignUp/For
 //Stytle
 import "./App.css";
 
-// Dashboard
+//Admin Dashboard
 import Dashboard from "./components/Pages/AdminDashboard/Dashboard/Dashboard";
 import Employees from "./components/Pages/AdminDashboard/Employees/Employees";
 import AdminLayout from "./components/Pages/AdminDashboard/AdminLayout";
+import Settings from "./components/Pages/AdminDashboard/Settings/Settings";
+import UpdateDeleteEmployeeModal from "./components/Page Components/Modals/UpdateDeleteEmployeeModal";
 
 // Protected Routing
 import RequireAuth from "./components/RequireAuth";
 
-
 // import { ToastContainer } from "react-toastify";
-import NotFound from "./components/Pages/NotFound";
 import "react-toastify/dist/ReactToastify.css";
-import Settings from "./components/Pages/AdminDashboard/Settings/Settings";
 import { Toaster } from "./components/ui/toaster";
 import { ToastContainer } from "react-toastify";
-import UpdateDeleteEmployeeModal from "./components/Page Components/Modals/UpdateDeleteEmployeeModal";
-import WaitListDisplay from "./components/Pages/WaitListDisplay";
-
-
-
 
 function App() {
   return (
     <>
-
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -71,7 +66,7 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Landing />} />
-              <Route path="/waitlist" element={<WaitListDisplay/>}></Route>
+              <Route path="/waitlist" element={<WaitListDisplay />}></Route>
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route
@@ -89,6 +84,7 @@ function App() {
                 <Route path="create-password" element={<CreatePassword />} />
                 <Route path="identification" element={<Identification />} />
                 <Route path="organization" element={<Organization />} />
+                <Route path="employee-signup" element={<EmployeeSignUp />} />
               </Route>
             </Route>
 
@@ -97,15 +93,17 @@ function App() {
               <Route path="/" element={<AdminLayout />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="employees" element={<Employees />}>
-                  <Route path=":id" element={<UpdateDeleteEmployeeModal/>}></Route>
+                  <Route
+                    path=":id"
+                    element={<UpdateDeleteEmployeeModal />}
+                  ></Route>
                 </Route>
-                <Route path="settings" element={<Settings/>}></Route>
+                <Route path="settings" element={<Settings />}></Route>
               </Route>
             </Route>
 
             {/* 404 Page */}
-            <Route path="*" element={<NotFound/>}></Route>
-
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
           {/* </HideHeaderFooter> */}
         </Router>
